@@ -15,6 +15,19 @@ namespace RevitAddin.Dockable.Example.Revit.Commands
 
             new PageView(new DockablePage()).Show();
 
+            new PageView(new BrowseKits()).Show();
+
+            return Result.Succeeded;
+        }
+    }
+
+    [Transaction(TransactionMode.Manual)]
+    public class CommandView2 : IExternalCommand
+    {
+        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elementSet)
+        {
+            UIApplication uiapp = commandData.Application;
+            new PageView(new DockablePage2()).Show();
             return Result.Succeeded;
         }
     }

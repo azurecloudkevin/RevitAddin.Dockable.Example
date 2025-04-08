@@ -15,6 +15,7 @@ namespace RevitAddin.Dockable.Example.Revit
         public Result OnStartup(UIControlledApplication application)
         {
             DockablePaneCreatorService = new DockablePaneCreatorService(application);
+            UIApplication uiapp = new UIApplication(RevitApplication.UIApplication.Application); // Fix: Correctly initialize UIApplication
             DockablePaneCreatorService.Initialize();
 
             application.ControlledApplication.ApplicationInitialized += (sender, args) =>
@@ -33,9 +34,16 @@ namespace RevitAddin.Dockable.Example.Revit
                     page.Title = "DockablePage3";
                     DockablePaneCreatorService.Register(DockablePage2.Guid3, page);
                 }
+
+                // BrowseKits
+                {
+                    var page = new BrowseKits();
+                    page.Title = "BrowseKits";
+                    DockablePaneCreatorService.Register(BrowseKits.Guid, "BrowseKits", page);
+                }
             };
 
-            ribbonPanel = application.CreatePanel("Dockable");
+            ribbonPanel = application.CreatePanel("Kit of Parts");
 
             var commandShow = ribbonPanel.CreatePushButton<CommandShow>("Show")
                 .SetLargeImage("Resources/revit.ico");

@@ -33,4 +33,16 @@ namespace RevitAddin.Dockable.Example.Revit.Commands
         }
     }
 
+    [Transaction(TransactionMode.Manual)]
+    public class BrowseKitOfParts : IExternalCommand
+    {
+        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elementSet)
+        {
+            UIApplication uiapp = commandData.Application;
+            App.DockablePaneCreatorService.Get(DockablePage.Guid)?.Show();
+            return Result.Succeeded;
+        }
+
+    }
+
 }
