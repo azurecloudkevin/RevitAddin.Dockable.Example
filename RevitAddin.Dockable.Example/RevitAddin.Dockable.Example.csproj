@@ -67,7 +67,7 @@
     <OutputPath>bin\Release\$(RevitVersion)</OutputPath>
     <DefineConstants>REVIT$(RevitVersion)</DefineConstants>
     <NoWarn>MSB3052</NoWarn>
-    <DebugType>None</DebugType>
+    <DebugType>Full</DebugType>
   </PropertyGroup>
 
   <!-- Debug -->
